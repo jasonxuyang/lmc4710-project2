@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { drawCard, progressTime, setPillar } from "./gameStateActions";
 import { ActionTypes, useGameState } from "./gameStateContext";
 
 const ButtonsContainer = styled.div`
@@ -42,15 +43,15 @@ export default function Buttons() {
   const { currentCard } = gameState;
 
   const rejectCard = () => {
-    dispatch({ type: ActionTypes.DRAW_CARD });
+    dispatch(drawCard());
   };
 
   const acceptCard = () => {
     currentCard?.effects.forEach((effect) => {
-      dispatch({ type: ActionTypes.SET_PILLAR, payload: effect });
+      dispatch(setPillar(effect));
     });
-    dispatch({ type: ActionTypes.SPEND_ENERGY });
-    dispatch({ type: ActionTypes.DRAW_CARD });
+    dispatch(progressTime());
+    dispatch(drawCard());
   };
   return (
     <ButtonsContainer>

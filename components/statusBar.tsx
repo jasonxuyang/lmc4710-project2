@@ -1,5 +1,6 @@
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useGameState } from "./gameStateContext";
+import { GameState, useGameState } from "./gameStateContext";
 
 const StatusBarContainer = styled.div`
   display: grid;
@@ -14,7 +15,7 @@ export default function StatusBar() {
 
   return (
     <StatusBarContainer>
-      <div>Energy: {gameState.energy}</div>
+      <div>Time: {gameState.currentTime}</div>
       <div>Sleep: {gameState.sleep}</div>
       <div>Study: {gameState.study}</div>
       <div>Social: {gameState.social}</div>

@@ -41,7 +41,7 @@ export const EVENTS: EVENT[] = [
   },
   {
     title: "Go to a frat party?",
-    time: TIME.MORNING,
+    time: TIME.NIGHT,
     effects: [
       { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.STUDY, value: -5 },
@@ -83,7 +83,7 @@ export const EVENTS: EVENT[] = [
   },
   {
     title: "Spend the day volunteering?",
-    time: TIME.NIGHT,
+    time: TIME.AFTERNOON,
     effects: [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: 5 },
@@ -107,3 +107,11 @@ export const EVENTS: EVENT[] = [
     ],
   },
 ];
+
+export const MORNING_EVENTS = EVENTS.filter(
+  (event) => event.time === TIME.MORNING
+);
+export const AFTERNOON_EVENTS = EVENTS.filter(
+  (event) => event.time === TIME.AFTERNOON
+);
+export const NIGHT_EVENTS = EVENTS.filter((event) => event.time === TIME.NIGHT);

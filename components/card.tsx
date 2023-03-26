@@ -1,6 +1,13 @@
+import { TIME } from "@/data/events";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { ActionTypes, useGameState } from "./gameStateContext";
+import { drawCard, setCurrentCard, setDeck } from "./gameStateActions";
+import {
+  ActionTypes,
+  Dispatch,
+  GameState,
+  useGameState,
+} from "./gameStateContext";
 
 const CardContainer = styled.div`
   display: flex;
@@ -14,11 +21,12 @@ const CardContainer = styled.div`
 
 export default function Card() {
   const { gameState, dispatch } = useGameState();
-  const { currentCard, deck } = gameState;
+  const { currentCard, currentTime, morningDeck, afternoonDeck, nightDeck } =
+    gameState;
 
   useEffect(() => {
-    if (!currentCard && deck.length) dispatch({ type: ActionTypes.DRAW_CARD });
-  }, [currentCard, deck.length, dispatch]);
+    dispatch(drawCard());
+  }, [dispatch]);
 
   return (
     <CardContainer>
