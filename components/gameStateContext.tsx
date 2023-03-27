@@ -4,6 +4,8 @@ import {
   MORNING_EVENTS,
   NIGHT_EVENTS,
   PILLAR,
+  SLEEP_STATUS,
+  STATUS,
   TIME,
 } from "@/data/events";
 import * as React from "react";
@@ -17,6 +19,10 @@ export enum ActionTypes {
   SET_CURRENT_TIME = "SET_CURRENT_TIME",
   DRAW_CARD = "DRAW_CARD",
   PROGRESS_TIME = "PROGRESS_TIME",
+  SET_STATUS = "SET_STATUS",
+  SET_REROLLS = "SET_REROLLS",
+  CHOOSE_CARD = "CHOOSE_CARD",
+  START_NEW_DAY = "START_NEW_DAY",
 }
 export type Action = { type: ActionTypes; value?: any };
 export type Dispatch = (action: Action) => void;
@@ -30,6 +36,10 @@ export type GameState = {
   afternoonDeck: EVENT[];
   nightDeck: EVENT[];
   currentCard: EVENT | undefined;
+  chosenCards: EVENT[];
+  status: STATUS;
+  daysLeft: number;
+  rerolls: number;
 };
 type GameStateProviderProps = { children: React.ReactNode };
 
@@ -42,6 +52,10 @@ const INITIAL_GAME_STATE: GameState = {
   afternoonDeck: [...AFTERNOON_EVENTS],
   nightDeck: [...NIGHT_EVENTS],
   currentCard: undefined,
+  chosenCards: [],
+  status: STATUS.START,
+  daysLeft: 30,
+  rerolls: 3,
 };
 const GameStateContext = createContext<
   { gameState: GameState; dispatch: Dispatch } | undefined
@@ -75,6 +89,39 @@ function gameStateReducer(gameState: GameState, action: Action) {
       return {
         ...gameState,
         currentTime: action.value,
+      };
+    }
+    case ActionTypes.SET_STATUS: {
+      return {
+        ...gameState,
+        status: action.value,
+      };
+    }
+    case ActionTypes.SET_REROLLS: {
+      return {
+        ...gameState,
+        rerolls: action.value,
+      };
+    }
+    case ActionTypes.CHOOSE_CARD: {
+      return {
+        ...gameState,
+        chosenCards: [...gameState.chosenCards, action.value],
+      };
+    }
+    case ActionTypes.START_NEW_DAY: {
+      return {
+        ...gameState,
+        morningDeck: [...MORNING_EVENTS],
+        afternoonDeck: [...AFTERNOON_EVENTS],
+        nightDeck: [...NIGHT_EVENTS],
+        rerolls: 3,
+        currentTime:
+          action.value === SLEEP_STATUS.BURNT_OUT
+            ? TIME.AFTERNOON
+            : TIME.MORNING,
+        chosenCards: [],
+        daysLeft: gameState.daysLeft - 1,
       };
     }
     case ActionTypes.DRAW_CARD: {
@@ -121,10 +168,7 @@ function gameStateReducer(gameState: GameState, action: Action) {
       } else {
         return {
           ...gameState,
-          morningDeck: [...MORNING_EVENTS],
-          afternoonDeck: [...AFTERNOON_EVENTS],
-          nightDeck: [...NIGHT_EVENTS],
-          currentTime: TIME.MORNING,
+          status: STATUS.END_DAY,
         };
       }
     }

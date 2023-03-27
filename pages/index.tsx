@@ -1,18 +1,10 @@
-import Buttons from "@/components/buttons";
-import Card from "@/components/card";
+import EndDayScreen from "@/components/endDayScreen";
 import { GameStateProvider } from "@/components/gameStateContext";
-import StatusBar from "@/components/statusBar";
+import PlayScreen from "@/components/playScreen";
+import StartScreen from "@/components/startScreen";
 import Head from "next/head";
-import { useEffect } from "react";
-import styled from "styled-components";
 
 // Styled Components
-const Layout = styled.main`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 24px;
-`;
 export default function Home() {
   return (
     <>
@@ -23,11 +15,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <GameStateProvider>
-        <Layout>
-          <StatusBar />
-          <Card />
-          <Buttons />
-        </Layout>
+        <PlayScreen />
+        <StartScreen />
+        <EndDayScreen />
       </GameStateProvider>
     </>
   );

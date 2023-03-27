@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { GameState, useGameState } from "./gameStateContext";
+import { useGameState } from "./gameStateContext";
+import useFeelingStatus from "./useFeelingStatus";
 
 const StatusBarContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   column-gap: 24px;
   height: 10vh;
@@ -12,13 +12,20 @@ const StatusBarContainer = styled.div`
 `;
 export default function StatusBar() {
   const { gameState } = useGameState();
+  const { sleep, study, social } = gameState;
+  const { sleepStatus, socialStatus, studyStatus } = useFeelingStatus();
 
   return (
     <StatusBarContainer>
-      <div>Time: {gameState.currentTime}</div>
-      <div>Sleep: {gameState.sleep}</div>
-      <div>Study: {gameState.study}</div>
-      <div>Social: {gameState.social}</div>
+      <div>
+        Sleep: {sleepStatus} {sleep}
+      </div>
+      <div>
+        Study: {studyStatus} {study}
+      </div>
+      <div>
+        Social: {socialStatus} {social}
+      </div>
     </StatusBarContainer>
   );
 }

@@ -1,6 +1,13 @@
+import { TIME } from "@/data/events";
 import styled, { css } from "styled-components";
-import { drawCard, progressTime, setPillar } from "./gameStateActions";
-import { ActionTypes, useGameState } from "./gameStateContext";
+import {
+  chooseCard,
+  drawCard,
+  progressTime,
+  setPillar,
+  setRerolls,
+} from "./gameStateActions";
+import { useGameState } from "./gameStateContext";
 
 const ButtonsContainer = styled.div`
   width: 100%;
@@ -14,7 +21,7 @@ const ButtonsContainer = styled.div`
 type ButtonProps = {
   disabled?: boolean;
 };
-const Button = styled.div<ButtonProps>`
+export const Button = styled.div<ButtonProps>`
   width: 100%;
   padding: 24px;
   display: flex;
@@ -40,23 +47,42 @@ Button.defaultProps = { disabled: false };
 
 export default function Buttons() {
   const { gameState, dispatch } = useGameState();
-  const { currentCard } = gameState;
+  const {
+    currentCard,
+    rerolls,
+    currentTime,
+    morningDeck,
+    afternoonDeck,
+    nightDeck,
+  } = gameState;
 
   const rejectCard = () => {
     dispatch(drawCard());
+    dispatch(setRerolls(rerolls - 1));
   };
 
   const acceptCard = () => {
     currentCard?.effects.forEach((effect) => {
       dispatch(setPillar(effect));
     });
+    dispatch(chooseCard(currentCard!));
     dispatch(progressTime());
     dispatch(drawCard());
   };
+
+  const canReroll = () => {
+    const hasRerolls = rerolls > 0;
+    if (currentTime === TIME.MORNING)
+      return hasRerolls && morningDeck.length > 0;
+    else if (currentTime === TIME.AFTERNOON)
+      return hasRerolls && afternoonDeck.length > 0;
+    else return hasRerolls && nightDeck.length > 0;
+  };
+
   return (
     <ButtonsContainer>
-      <Button disabled={!currentCard} onClick={rejectCard}>
-        No
+      <Button disabled={!canReroll()} onClick={rejectCard}>
+        Reroll ({rerolls})
       </Button>
       <Button onClick={acceptCard} disabled={!currentCard}>
         Yes

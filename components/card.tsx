@@ -1,13 +1,9 @@
 import { TIME } from "@/data/events";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { drawCard, setCurrentCard, setDeck } from "./gameStateActions";
-import {
-  ActionTypes,
-  Dispatch,
-  GameState,
-  useGameState,
-} from "./gameStateContext";
+import Dialogue from "./dialogue";
+import { drawCard } from "./gameStateActions";
+import { useGameState } from "./gameStateContext";
 
 const CardContainer = styled.div`
   display: flex;
@@ -21,8 +17,7 @@ const CardContainer = styled.div`
 
 export default function Card() {
   const { gameState, dispatch } = useGameState();
-  const { currentCard, currentTime, morningDeck, afternoonDeck, nightDeck } =
-    gameState;
+  const { currentCard } = gameState;
 
   useEffect(() => {
     dispatch(drawCard());
@@ -30,7 +25,8 @@ export default function Card() {
 
   return (
     <CardContainer>
-      {currentCard ? currentCard.title : "No cards left in deck."}
+      <Dialogue />
+      {currentCard?.title}
     </CardContainer>
   );
 }
