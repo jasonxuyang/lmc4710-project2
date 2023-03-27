@@ -19,13 +19,19 @@ export enum SOCIAL_STATUS {
 
 export enum STUDY_STATUS {
   STRESSED = "STRESSED",
-  RELAXED = "RELAXED",
+  PREPARED = "PREPARED",
 }
 
 export enum PILLAR {
   SLEEP = "sleep",
   STUDY = "study",
   SOCIAL = "social",
+}
+
+export enum FLAGS {
+  PREPARED = "When you study, you tend to know more. (Hints are enabled)",
+  POPULAR = "When you are popular, you get more chances to choose what you want. (+1 reroll)",
+  BURNT_OUT = "When you are burnt out, you tend to sleep in. (you lose a morning activity)",
 }
 
 export type EFFECT = {
@@ -38,6 +44,11 @@ export type EVENT = {
   title: string;
   time: TIME;
   effects: EFFECT[];
+};
+
+export type FLAG = {
+  label: string;
+  timeAcknowledged?: Date;
 };
 
 export enum STATUS {

@@ -1,5 +1,6 @@
 import { TIME } from "@/data/events";
 import styled, { css } from "styled-components";
+import Book from "./book";
 import {
   chooseCard,
   drawCard,
@@ -12,7 +13,7 @@ import { useGameState } from "./gameStateContext";
 const ButtonsContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr auto;
   column-gap: 24px;
   height: 20vh;
   align-items: center;
@@ -87,6 +88,7 @@ export default function Buttons() {
       <Button onClick={acceptCard} disabled={!currentCard}>
         Yes
       </Button>
+      <Book />
     </ButtonsContainer>
   );
 }

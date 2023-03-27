@@ -29,7 +29,8 @@ const SummaryContainer = styled.div`
 export default function EndDayScreen() {
   const { gameState, dispatch } = useGameState();
   const { chosenCards, sleep, social, study, daysLeft } = gameState;
-  const { sleepStatus, socialStatus, studyStatus } = useFeelingStatus();
+  const feelingStatus = useFeelingStatus();
+  const { sleepStatus, socialStatus, studyStatus } = feelingStatus;
   if (gameState.status !== STATUS.END_DAY) return null;
 
   if (daysLeft === 0) {
@@ -105,7 +106,7 @@ export default function EndDayScreen() {
       </div>
       <Button
         onClick={() => {
-          dispatch(startNewDay(sleepStatus));
+          dispatch(startNewDay(feelingStatus));
           dispatch(setStatus(STATUS.PLAY));
         }}
       >

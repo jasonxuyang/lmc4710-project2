@@ -1,10 +1,12 @@
 import {
   AFTERNOON_EVENTS,
   EVENT,
+  FLAG,
   MORNING_EVENTS,
   NIGHT_EVENTS,
   PILLAR,
   SLEEP_STATUS,
+  SOCIAL_STATUS,
   STATUS,
   TIME,
 } from "@/data/events";
@@ -24,6 +26,8 @@ export enum ActionTypes {
   CHOOSE_CARD = "CHOOSE_CARD",
   START_NEW_DAY = "START_NEW_DAY",
   RESET_STATE = "RESET_STATE",
+  ADD_FLAG = "ADD_FLAG",
+  READ_HINTS = "READ_HINTS",
 }
 export type Action = { type: ActionTypes; value?: any };
 export type Dispatch = (action: Action) => void;
@@ -41,6 +45,7 @@ export type GameState = {
   status: STATUS;
   daysLeft: number;
   rerolls: number;
+  flags: FLAG[];
 };
 type GameStateProviderProps = { children: React.ReactNode };
 
@@ -56,7 +61,8 @@ const INITIAL_GAME_STATE: GameState = {
   chosenCards: [],
   status: STATUS.START,
   daysLeft: 5,
-  rerolls: 3,
+  rerolls: 2,
+  flags: [],
 };
 const GameStateContext = createContext<
   { gameState: GameState; dispatch: Dispatch } | undefined
@@ -115,15 +121,30 @@ function gameStateReducer(gameState: GameState, action: Action) {
         ...INITIAL_GAME_STATE,
       };
     }
+    case ActionTypes.ADD_FLAG: {
+      return {
+        ...gameState,
+        flags: [...gameState.flags, { label: action.value }],
+      };
+    }
+    case ActionTypes.READ_HINTS: {
+      const readFlags = [...gameState.flags];
+      readFlags.forEach((flag) => (flag.timeAcknowledged = new Date()));
+      return {
+        ...gameState,
+        flags: [...readFlags],
+      };
+    }
     case ActionTypes.START_NEW_DAY: {
+      const { sleepStatus, studyStatus, socialStatus } = action.value;
       return {
         ...gameState,
         morningDeck: [...MORNING_EVENTS],
         afternoonDeck: [...AFTERNOON_EVENTS],
         nightDeck: [...NIGHT_EVENTS],
-        rerolls: 3,
+        rerolls: socialStatus === SOCIAL_STATUS.POPULAR ? 3 : 2,
         currentTime:
-          action.value === SLEEP_STATUS.BURNT_OUT
+          sleepStatus === SLEEP_STATUS.BURNT_OUT
             ? TIME.AFTERNOON
             : TIME.MORNING,
         chosenCards: [],

@@ -1,6 +1,11 @@
 import { SLEEP_STATUS, SOCIAL_STATUS, STUDY_STATUS } from "@/data/events";
 import { useGameState } from "./gameStateContext";
 
+export type FeelingStatus = {
+  sleepStatus: SLEEP_STATUS;
+  socialStatus: SOCIAL_STATUS;
+  studyStatus: STUDY_STATUS;
+};
 export default function useFeelingStatus() {
   const { gameState } = useGameState();
   const { sleep, social, study } = gameState;
@@ -14,7 +19,7 @@ export default function useFeelingStatus() {
   if (social > 60) socialStatus = SOCIAL_STATUS.POPULAR;
   else socialStatus = SOCIAL_STATUS.LONELY;
 
-  if (study > 60) studyStatus = STUDY_STATUS.RELAXED;
+  if (study > 60) studyStatus = STUDY_STATUS.PREPARED;
   else studyStatus = STUDY_STATUS.STRESSED;
 
   return { sleepStatus, socialStatus, studyStatus };

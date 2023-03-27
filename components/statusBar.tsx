@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Book from "./book";
 import { useGameState } from "./gameStateContext";
 import useFeelingStatus from "./useFeelingStatus";
 

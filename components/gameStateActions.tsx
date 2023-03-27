@@ -1,5 +1,13 @@
-import { EFFECT, EVENT, SLEEP_STATUS, STATUS, TIME } from "@/data/events";
+import {
+  EFFECT,
+  EVENT,
+  FLAGS,
+  SLEEP_STATUS,
+  STATUS,
+  TIME,
+} from "@/data/events";
 import { Action, ActionTypes } from "./gameStateContext";
+import { FeelingStatus } from "./useFeelingStatus";
 
 export function setPillar(effect: EFFECT): Action {
   return { type: ActionTypes.SET_PILLAR, value: effect };
@@ -25,6 +33,10 @@ export function chooseCard(card: EVENT) {
   return { type: ActionTypes.CHOOSE_CARD, value: card };
 }
 
+export function addFlag(flag: FLAGS) {
+  return { type: ActionTypes.ADD_FLAG, value: flag };
+}
+
 export function drawCard() {
   return { type: ActionTypes.DRAW_CARD };
 }
@@ -33,8 +45,8 @@ export function progressTime() {
   return { type: ActionTypes.PROGRESS_TIME };
 }
 
-export function startNewDay(sleepStatus: SLEEP_STATUS) {
-  return { type: ActionTypes.START_NEW_DAY, value: sleepStatus };
+export function startNewDay(status: FeelingStatus) {
+  return { type: ActionTypes.START_NEW_DAY, value: status };
 }
 
 export function setRerolls(value: number) {
@@ -43,4 +55,8 @@ export function setRerolls(value: number) {
 
 export function resetState() {
   return { type: ActionTypes.RESET_STATE };
+}
+
+export function readHints() {
+  return { type: ActionTypes.READ_HINTS };
 }
