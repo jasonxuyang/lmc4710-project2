@@ -1,7 +1,7 @@
 import { STATUS } from "@/data/events";
 import styled from "styled-components";
 import { Button } from "./buttons";
-import { setStatus, startNewDay } from "./gameStateActions";
+import { resetState, setStatus, startNewDay } from "./gameStateActions";
 import { useGameState } from "./gameStateContext";
 import useFeelingStatus from "./useFeelingStatus";
 
@@ -28,9 +28,64 @@ const SummaryContainer = styled.div`
 
 export default function EndDayScreen() {
   const { gameState, dispatch } = useGameState();
-  const { chosenCards } = gameState;
+  const { chosenCards, sleep, social, study, daysLeft } = gameState;
   const { sleepStatus, socialStatus, studyStatus } = useFeelingStatus();
   if (gameState.status !== STATUS.END_DAY) return null;
+
+  if (daysLeft === 0) {
+    return (
+      <Layout>
+        <div>
+          <Title>Congrats! You graduated!</Title>
+          <p>
+            You ended the game feeling {sleepStatus}, {socialStatus}, and{" "}
+            {studyStatus}.
+          </p>
+        </div>
+
+        <Button
+          onClick={() => {
+            dispatch(resetState());
+            dispatch(setStatus(STATUS.PLAY));
+          }}
+        >
+          Play again?
+        </Button>
+      </Layout>
+    );
+  }
+
+  if (sleep <= 0 || social <= 0 || study <= 0) {
+    const generateLoseMessage = () => {
+      if (sleep <= 0)
+        return "You slept through too many days in your morning class and the professor failed you.";
+      if (social <= 0)
+        return "Your loneliness started affecting your mental health, and you got to the point where you dropped out.";
+      if (study <= 0)
+        return "You didn't study enough and you failed your classes.";
+    };
+    return (
+      <Layout>
+        <div>
+          <Title>Sorry, you failed to graduate.</Title>
+          <p>{generateLoseMessage()}</p>
+          <p>
+            You ended the game feeling {sleepStatus}, {socialStatus}, and{" "}
+            {studyStatus}.
+          </p>
+        </div>
+
+        <Button
+          onClick={() => {
+            dispatch(resetState());
+            dispatch(setStatus(STATUS.PLAY));
+          }}
+        >
+          Play again?
+        </Button>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

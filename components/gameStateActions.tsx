@@ -40,3 +40,7 @@ export function startNewDay(sleepStatus: SLEEP_STATUS) {
 export function setRerolls(value: number) {
   return { type: ActionTypes.SET_REROLLS, value };
 }
+
+export function resetState() {
+  return { type: ActionTypes.RESET_STATE };
+}

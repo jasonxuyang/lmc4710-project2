@@ -23,6 +23,7 @@ export enum ActionTypes {
   SET_REROLLS = "SET_REROLLS",
   CHOOSE_CARD = "CHOOSE_CARD",
   START_NEW_DAY = "START_NEW_DAY",
+  RESET_STATE = "RESET_STATE",
 }
 export type Action = { type: ActionTypes; value?: any };
 export type Dispatch = (action: Action) => void;
@@ -54,7 +55,7 @@ const INITIAL_GAME_STATE: GameState = {
   currentCard: undefined,
   chosenCards: [],
   status: STATUS.START,
-  daysLeft: 30,
+  daysLeft: 5,
   rerolls: 3,
 };
 const GameStateContext = createContext<
@@ -107,6 +108,11 @@ function gameStateReducer(gameState: GameState, action: Action) {
       return {
         ...gameState,
         chosenCards: [...gameState.chosenCards, action.value],
+      };
+    }
+    case ActionTypes.RESET_STATE: {
+      return {
+        ...INITIAL_GAME_STATE,
       };
     }
     case ActionTypes.START_NEW_DAY: {
