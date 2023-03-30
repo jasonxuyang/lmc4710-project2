@@ -60,7 +60,7 @@ const INITIAL_GAME_STATE: GameState = {
   currentCard: undefined,
   chosenCards: [],
   status: STATUS.START,
-  daysLeft: 5,
+  daysLeft: 30,
   rerolls: 2,
   flags: [],
 };
