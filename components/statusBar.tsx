@@ -1,3 +1,4 @@
+import { STUDY_STATUS } from "@/data/events";
 import styled from "styled-components";
 import Book from "./book";
 import { useGameState } from "./gameStateContext";
@@ -15,17 +16,18 @@ export default function StatusBar() {
   const { gameState } = useGameState();
   const { sleep, study, social } = gameState;
   const { sleepStatus, socialStatus, studyStatus } = useFeelingStatus();
+  const isPrepared = studyStatus === STUDY_STATUS.PREPARED;
 
   return (
     <StatusBarContainer>
       <div>
-        Sleep: {sleepStatus} {sleep}
+        Sleep: {sleepStatus} {isPrepared && sleep}
       </div>
       <div>
-        Study: {studyStatus} {study}
+        Study: {studyStatus} {isPrepared && study}
       </div>
       <div>
-        Social: {socialStatus} {social}
+        Social: {socialStatus} {isPrepared && social}
       </div>
     </StatusBarContainer>
   );
