@@ -69,6 +69,16 @@ export const EVENTS: EVENT[] = [
       "On the way to class you see your friend, and they ask if you want to grab Chick-fil-A. Do you go?",
     time: TIME.MORNING,
     effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+    ],
+  },
+  {
+    label: "Worked out with your friend",
+    title:
+      "You wake up a bit earlier than usual. Your friend texts you asking to go work out together. Do you go?",
+    time: TIME.MORNING,
+    effects: [
       { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
@@ -76,7 +86,7 @@ export const EVENTS: EVENT[] = [
   {
     label: "Studied in the library",
     title:
-      "You have a big exam coming up. Do you head to the library to study?",
+      "You have a big exam coming up. Do you spend the moring stuyding in the library?",
     time: TIME.MORNING,
     effects: [
       { pillar: PILLAR.STUDY, value: 5 },
@@ -94,14 +104,14 @@ export const EVENTS: EVENT[] = [
     ],
   },
   {
-    label: "Went to a frat party",
+    label: "Grab Blue Donkey with a friend and study",
     title:
-      "You heard about a frat party that is going on tonight. Do you want to go?",
-    time: TIME.NIGHT,
+      "You wake up to a text from your friend asking to study at the library together. Do you go?",
+    time: TIME.MORNING,
     effects: [
       { pillar: PILLAR.SLEEP, value: -5 },
-      { pillar: PILLAR.STUDY, value: -5 },
-      { pillar: PILLAR.SOCIAL, value: 10 },
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
     ],
   },
   {
@@ -115,13 +125,23 @@ export const EVENTS: EVENT[] = [
     ],
   },
   {
-    label: "Watched a movie",
+    label: "Went to a career prep session",
     title:
-      "Your friend invites you to watch the new Marvel movie at Atlantic Station. Do you go?",
-    time: TIME.NIGHT,
+      "Your club is hosting a career prep session and resume review. Do you participate?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+  },
+  {
+    label: "Played basketball with friends",
+    title:
+      "Some of your friends invite you to play basketball with them at the CRC. Do you play with them?",
+    time: TIME.AFTERNOON,
     effects: [
       { pillar: PILLAR.STUDY, value: -5 },
-      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
     ],
   },
   {
@@ -130,8 +150,41 @@ export const EVENTS: EVENT[] = [
       "You woke up feeling exhausted today. Do you take a nap to recharge?",
     time: TIME.AFTERNOON,
     effects: [
+      { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SLEEP, value: 5 },
+    ],
+  },
+  {
+    label: "Planted trees",
+    title:
+      "Your club has a tree planting event at Piedmont Park. Do spend the day volunteering?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.SOCIAL, value: 10 },
+      { pillar: PILLAR.SLEEP, value: -10 },
+    ],
+  },
+  {
+    label: "Went to a frat party",
+    title:
+      "You heard about a frat party that is going on tonight. Do you want to go?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.SLEEP, value: -5 },
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
+    ],
+  },
+  {
+    label: "Watched a movie",
+    title:
+      "Your friend invites you to watch the new Marvel movie at Atlantic Station. Do you go?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
     ],
   },
   {
@@ -142,18 +195,6 @@ export const EVENTS: EVENT[] = [
     effects: [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
-      { pillar: PILLAR.SLEEP, value: -5 },
-    ],
-  },
-  {
-    label: "Planted trees",
-    title:
-      "Your club has a tree planting event at Piedmont Park. Do spend the day volunteering?",
-    time: TIME.AFTERNOON,
-    effects: [
-      { pillar: PILLAR.STUDY, value: 10 },
-      { pillar: PILLAR.SOCIAL, value: 5 },
-      { pillar: PILLAR.SLEEP, value: -10 },
     ],
   },
   {
@@ -161,6 +202,7 @@ export const EVENTS: EVENT[] = [
     title: "You get invited to a rooftop party at the Standard. Do you go?",
     time: TIME.NIGHT,
     effects: [
+      { pillar: PILLAR.SLEEP, value: -10 },
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
@@ -172,6 +214,7 @@ export const EVENTS: EVENT[] = [
     effects: [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: -10 },
+      { pillar: PILLAR.SLEEP, value: -10 },
     ],
   },
 ];

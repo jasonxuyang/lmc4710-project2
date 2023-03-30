@@ -83,7 +83,7 @@ export default function Buttons() {
   return (
     <ButtonsContainer>
       <Button disabled={!canReroll()} onClick={rejectCard}>
-        Reroll ({rerolls})
+        No ({rerolls})
       </Button>
       <Button onClick={acceptCard} disabled={!currentCard}>
         Yes
