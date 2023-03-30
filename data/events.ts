@@ -104,7 +104,7 @@ export const EVENTS: EVENT[] = [
     ],
   },
   {
-    label: "Grab Blue Donkey with a friend and study",
+    label: "Grabbed Blue Donkey with a friend and study",
     title:
       "You wake up to a text from your friend asking to study at the library together. Do you go?",
     time: TIME.MORNING,
@@ -115,9 +115,39 @@ export const EVENTS: EVENT[] = [
     ],
   },
   {
+    label: "Went to a yoga class",
+    title:
+      "Your friend invited you to go to a yoga class this morning. Do you want to go?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+    ],
+  },
+  {
+    label: "Went for a morning hike",
+    title:
+      "Your club is hosting a group sunrise hike. Do you wake up early and go?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.SLEEP, value: -10 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
+    ],
+  },
+  {
     label: "Went to career fair",
     title:
       "Career fair is today and you still are looking for a job. Do you attend career fair?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+  },
+  {
+    label: "Met up with a study group",
+    title:
+      "Your study group is holding a study session at the library. Do you go study and prep for your upcoming test?",
     time: TIME.AFTERNOON,
     effects: [
       { pillar: PILLAR.STUDY, value: 10 },
@@ -214,6 +244,17 @@ export const EVENTS: EVENT[] = [
     effects: [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: -10 },
+      { pillar: PILLAR.SLEEP, value: -10 },
+    ],
+  },
+  {
+    label: "Slept early",
+    title:
+      "You're feeling a bit tired. Do you stay in and have a movie night by yourself and sleep early?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.SLEEP, value: -10 },
     ],
   },
