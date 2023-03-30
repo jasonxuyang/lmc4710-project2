@@ -66,9 +66,9 @@ export default function Book() {
       }
     }
   };
-  const isNotificationVisible = flags.some(
-    (flag) => flag?.timeAcknowledged === undefined
-  );
+  const isNotificationVisible =
+    flags.some((flag) => flag?.timeAcknowledged === undefined) &&
+    studyStatus === STUDY_STATUS.PREPARED;
 
   return (
     <BookContainer>
