@@ -74,7 +74,13 @@ export default function Book() {
     <BookContainer>
       <Icon
         onClick={() => {
-          if (isTooltipOpen) dispatch(readHints());
+          if (isTooltipOpen) {
+            dispatch(readHints());
+            new Audio("/audio/book-closing.mp3").play();
+          }
+          else {
+            new Audio("/audio/book-flipping.mp3").play();
+          }
           setIsTooltipOpen((isTooltipOpen) => !isTooltipOpen);
         }}
       >

@@ -84,3 +84,8 @@ a {
   column-gap: 24px;
   border: 1px white solid;
 }
+
+body {
+  color: white;
+  background-color: black;
+}

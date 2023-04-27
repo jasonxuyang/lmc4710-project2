@@ -16,7 +16,7 @@ export default function Dialogue() {
   const generateMessage = () => {
     if (currentTime === TIME.MORNING) {
       if (sleepStatus === SLEEP_STATUS.TIRED) {
-        return `You wake up a little bit later than usual. You feel tired.. There are ${daysLeft} days until graduation.`;
+        return `You wake up a little bit later than usual. You feel tired. There are ${daysLeft} days until graduation.`;
       }
       return `It's morning, and you have a choice to make. There are ${daysLeft} days until graduation.`;
     } else if (currentTime === TIME.AFTERNOON) {

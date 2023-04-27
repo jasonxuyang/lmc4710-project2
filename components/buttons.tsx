@@ -60,6 +60,7 @@ export default function Buttons() {
   const rejectCard = () => {
     dispatch(drawCard());
     dispatch(setRerolls(rerolls - 1));
+    // play reject audio
   };
 
   const acceptCard = () => {
@@ -69,6 +70,7 @@ export default function Buttons() {
     dispatch(chooseCard(currentCard!));
     dispatch(progressTime());
     dispatch(drawCard());
+    // play accept audio
   };
 
   const canReroll = () => {
