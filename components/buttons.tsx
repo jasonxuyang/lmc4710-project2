@@ -30,11 +30,13 @@ export const Button = styled.div<ButtonProps>`
   justify-content: center;
   cursor: pointer;
   border: 1px white solid;
+  transition-duration: 0.3s;
 
   &:hover,
   focus {
     background-color: white;
     color: black;
+    transform: translate(0px, -10px);
   }
 
   ${({ disabled }) =>
@@ -70,7 +72,7 @@ export default function Buttons() {
     dispatch(chooseCard(currentCard!));
     dispatch(progressTime());
     dispatch(drawCard());
-    // play accept audio
+    new Audio(currentCard?.audio).play(); // play accept audio
   };
 
   const canReroll = () => {

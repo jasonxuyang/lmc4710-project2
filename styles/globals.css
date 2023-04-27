@@ -85,7 +85,117 @@ a {
   border: 1px white solid;
 }
 
-body {
+
+
+
+#morning {
   color: white;
-  background-color: black;
+  background-size: 400% 400%;
+  background: linear-gradient(180deg, rgba(0,200,255,1) 0%, rgba(160,160,255,1) 20%,  rgba(255,197,23,1) 65%, rgba(170,0,255,1) 100%);
+}
+
+@keyframes to-morning {
+  0% {
+    background: rgba(0, 0, 0, 1);
+  }
+  100% {
+    background: rgb(0, 28, 131, 0);
+  }
+}
+
+#to-morning {
+  animation: to-morning;
+  animation-duration: 4s;
+}
+
+@keyframes aft {
+  from {
+    background: linear-gradient(180deg, rgba(0,200,255,1) 0%, rgba(160,160,255,1) 20%,  rgba(255,197,23,1) 65%, rgba(170,0,255,1) 100%);
+  }
+  to {
+    background: linear-gradient(180deg, rgba(0,136,255,1) 0%, rgba(199,247,255,1) 100%);
+  }
+}
+
+#afternoon {
+  color: white;
+  background-size: 400% 400%;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(0,136,255,1) 0%, rgba(199,247,255,1) 100%);
+  animation: aft;
+  animation-duration: 4s;
+}
+
+@keyframes to-afternoon {
+  0% {
+    background: rgba(255,255,255,0);
+  }
+  50% {
+    background: rgba(0,200,255,1);
+  }
+  100% {
+    background: rgba(0,200,255,0);
+  }
+}
+
+#to-afternoon {
+  animation: to-afternoon;
+  animation-duration: 4s;
+}
+
+@keyframes nigh {
+  from {
+    background: linear-gradient(180deg, rgba(0,136,255,1) 0%, rgba(199,247,255,1) 100%);  }
+  to {
+    background: linear-gradient(180deg, rgba(0,1,22,1) 0%, rgba(18,0,135,1) 70%, rgba(255,70,70,1) 100%);
+  }
+}
+
+#night {
+  color: white;
+  background: rgb(0,1,22);
+  background: linear-gradient(180deg, rgba(0,1,22,1) 0%, rgba(18,0,135,1) 70%, rgba(255,70,70,1) 100%);
+  animation: nigh;
+  animation-duration: 4s;
+}
+
+@keyframes to-night {
+  0% {
+    background: rgba(255,255,255,0);
+  }
+  50% {
+    background: rgb(51, 17, 174);
+  }
+  100% {
+    background: rgba(0,200,255,0);
+  }
+}
+
+#to-night {
+  animation: to-night;
+  animation-duration: 4s;
+}
+
+
+#status-bar {
+  background: rgb(0,136,255);
+  background: linear-gradient(270deg, rgba(0,136,255,0.2) 0%, rgba(170,0,255,0.2) 100%);
+}
+
+@media (orientation: landscape) {
+  #card {
+    font-size: calc(2vw);
+  }
+  #dialogue {
+    font-size: calc(2vw);
+  }
+}
+
+@media (orientation: portrait) {
+  #card {
+    font-size: 3vh;
+  }
+  #dialogue {
+    font-size: 3vh;
+  }
 }

@@ -44,6 +44,7 @@ export type EVENT = {
   title: string;
   time: TIME;
   effects: EFFECT[];
+  audio: string;
 };
 
 export type FLAG = {
@@ -72,6 +73,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: "/audio/fastfood.mp3"
   },
   {
     label: "Worked out with your friend",
@@ -82,16 +84,18 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: "/audio/workout.mp3"
   },
   {
     label: "Studied in the library",
     title:
-      "You have a big exam coming up. Do you spend the moring stuyding in the library?",
+      "You have a big exam coming up. Do you spend the morning studying at the library?",
     time: TIME.MORNING,
     effects: [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
+    audio: "/audio/studying.mp3"
   },
   {
     label: "Slept in",
@@ -102,6 +106,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.STUDY, value: -5 },
     ],
+    audio: "/audio/sleep-in.mp3"
   },
   {
     label: "Grabbed Blue Donkey with a friend and study",
@@ -113,6 +118,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: "/audio/studying.mp3"
   },
   {
     label: "Went to a yoga class",
@@ -123,6 +129,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: "/audio/yoga.mp3"
   },
   {
     label: "Went for a morning hike",
@@ -133,6 +140,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: -10 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
+    audio: "/audio/hiking.mp3"
   },
   {
     label: "Went to career fair",
@@ -143,6 +151,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
+    audio: ""
   },
   {
     label: "Met up with a study group",
@@ -153,6 +162,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
+    audio: "/audio/studying.mp3"
   },
   {
     label: "Went to a career prep session",
@@ -163,6 +173,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
+    audio: ""
   },
   {
     label: "Played basketball with friends",
@@ -173,6 +184,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
+    audio: "/audio/basketball.mp3"
   },
   {
     label: "Took a nap",
@@ -184,6 +196,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SLEEP, value: 5 },
     ],
+    audio: "/audio/sleep-in.mp3"
   },
   {
     label: "Planted trees",
@@ -194,6 +207,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 10 },
       { pillar: PILLAR.SLEEP, value: -10 },
     ],
+    audio: ""
   },
   {
     label: "Went to a frat party",
@@ -205,6 +219,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
+    audio: ""
   },
   {
     label: "Watched a movie",
@@ -216,6 +231,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: ""
   },
   {
     label: "Went to a club meeting",
@@ -226,6 +242,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: ""
   },
   {
     label: "Partied at the Standard",
@@ -236,6 +253,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
     ],
+    audio: ""
   },
   {
     label: "Stayed up studying for an exam",
@@ -246,6 +264,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -10 },
       { pillar: PILLAR.SLEEP, value: -10 },
     ],
+    audio: "/audio/study-alone.mp3"
   },
   {
     label: "Slept early",
@@ -257,6 +276,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.SLEEP, value: -10 },
     ],
+    audio: ""
   },
 ];
 

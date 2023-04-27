@@ -19,7 +19,7 @@ export default function StatusBar() {
   const isPrepared = studyStatus === STUDY_STATUS.PREPARED;
 
   return (
-    <StatusBarContainer>
+    <StatusBarContainer id="status-bar">
       <div>
         Sleep: {sleepStatus} {isPrepared && sleep}
       </div>

@@ -5,7 +5,7 @@ import useFeelingStatus from "./useFeelingStatus";
 
 const DialogueContainer = styled.div`
   margin: 16px;
-  opacity: 0.5;
+  opacity: 0.7;
 `;
 
 export default function Dialogue() {
@@ -28,5 +28,5 @@ export default function Dialogue() {
     return "It's nighttime. The day is almost over.";
   };
 
-  return <DialogueContainer>{generateMessage()}</DialogueContainer>;
+  return <DialogueContainer id="dialogue">{generateMessage()}</DialogueContainer>;
 }

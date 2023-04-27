@@ -24,7 +24,7 @@ export default function Card() {
   }, [dispatch]);
 
   return (
-    <CardContainer>
+    <CardContainer id="card">
       <Dialogue />
       {currentCard?.title}
     </CardContainer>

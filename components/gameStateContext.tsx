@@ -154,6 +154,8 @@ function gameStateReducer(gameState: GameState, action: Action) {
     case ActionTypes.DRAW_CARD: {
       const { currentTime, morningDeck, afternoonDeck, nightDeck } = gameState;
       let newCardIndex, newDeck;
+      document.documentElement.id = currentTime; // time flag for css
+      document.body.id = "to-" + currentTime;
       if (currentTime === TIME.MORNING) {
         newCardIndex = Math.floor(Math.random() * morningDeck.length);
         newDeck = [...morningDeck];
