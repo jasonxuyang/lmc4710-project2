@@ -108,6 +108,7 @@ export default function EndDayScreen() {
         onClick={() => {
           dispatch(startNewDay(feelingStatus));
           dispatch(setStatus(STATUS.PLAY));
+          new Audio("/audio/alarm.mp3").play();
         }}
       >
         Go to sleep

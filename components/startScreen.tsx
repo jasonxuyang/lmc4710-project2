@@ -39,6 +39,7 @@ export default function StartScreen() {
       <Button
         onClick={() => {
           dispatch(setStatus(STATUS.PLAY));
+          new Audio("/audio/alarm.mp3").play();
         }}
       >
         Good luck
