@@ -48,7 +48,11 @@ export default function EndDayScreen() {
           onClick={() => {
             dispatch(resetState());
             dispatch(setStatus(STATUS.PLAY));
+            new Audio("/audio/slide-paper.mp3").play();
+            new Audio("/audio/alarm.mp3").play();
           }}
+          onMouseEnter={() => { new Audio("/audio/hover-on.mp3").play(); }}
+          onMouseLeave={() => { new Audio("/audio/hover-off.mp3").play(); }}
         >
           Play again?
         </Button>
@@ -80,7 +84,11 @@ export default function EndDayScreen() {
           onClick={() => {
             dispatch(resetState());
             dispatch(setStatus(STATUS.PLAY));
+            new Audio("/audio/slide-paper.mp3").play();
+            new Audio("/audio/alarm.mp3").play();
           }}
+          onMouseEnter={() => { new Audio("/audio/hover-on.mp3").play(); }}
+          onMouseLeave={() => { new Audio("/audio/hover-off.mp3").play(); }}
         >
           Play again?
         </Button>
@@ -110,6 +118,8 @@ export default function EndDayScreen() {
           dispatch(setStatus(STATUS.PLAY));
           new Audio("/audio/alarm.mp3").play();
         }}
+        onMouseEnter={() => { new Audio("/audio/hover-on.mp3").play(); }}
+        onMouseLeave={() => { new Audio("/audio/hover-off.mp3").play(); }}
       >
         Go to sleep
       </Button>

@@ -62,7 +62,7 @@ export default function Buttons() {
   const rejectCard = () => {
     dispatch(drawCard());
     dispatch(setRerolls(rerolls - 1));
-    // play reject audio
+    new Audio("/audio/slide-paper.mp3").play(); // play reject audio
   };
 
   const acceptCard = () => {
@@ -72,6 +72,7 @@ export default function Buttons() {
     dispatch(chooseCard(currentCard!));
     dispatch(progressTime());
     dispatch(drawCard());
+    new Audio("/audio/slide-paper.mp3").play();
     new Audio(currentCard?.audio).play(); // play accept audio
   };
 
@@ -84,12 +85,20 @@ export default function Buttons() {
     else return hasRerolls && nightDeck.length > 0;
   };
 
+  const mouseEnter = () => {
+    new Audio("/audio/hover-on.mp3").play();
+  };
+
+  const mouseLeave = () => {
+    new Audio("/audio/hover-off.mp3").play();
+  };
+
   return (
     <ButtonsContainer>
-      <Button disabled={!canReroll()} onClick={rejectCard}>
+      <Button disabled={!canReroll()} onClick={rejectCard} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
         No ({rerolls})
       </Button>
-      <Button onClick={acceptCard} disabled={!currentCard}>
+      <Button onClick={acceptCard} disabled={!currentCard} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
         Yes
       </Button>
       <Book />

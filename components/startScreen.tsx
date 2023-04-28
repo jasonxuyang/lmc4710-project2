@@ -39,8 +39,11 @@ export default function StartScreen() {
       <Button
         onClick={() => {
           dispatch(setStatus(STATUS.PLAY));
+          new Audio("/audio/slide-paper.mp3").play();
           new Audio("/audio/alarm.mp3").play();
         }}
+        onMouseEnter={() => { new Audio("/audio/hover-on.mp3").play(); }}
+        onMouseLeave={() => { new Audio("/audio/hover-off.mp3").play(); }}
       >
         Good luck
       </Button>

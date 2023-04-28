@@ -11,7 +11,7 @@ import {
   TIME,
 } from "@/data/events";
 import * as React from "react";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, } from "react";
 
 export enum ActionTypes {
   SET_PILLAR = "SET_PILLAR",
@@ -67,6 +67,46 @@ const INITIAL_GAME_STATE: GameState = {
 const GameStateContext = createContext<
   { gameState: GameState; dispatch: Dispatch } | undefined
 >(undefined);
+
+// Background Audio
+var bg_audio: HTMLAudioElement;
+var curr_time = "";
+
+const updateBGAudio = (time: string) => {
+
+  if (curr_time == "") {
+    curr_time = time;
+    bg_audio = new Audio();
+    bg_audio.src = "/audio/" + time + ".mp3";
+    bg_audio.volume = 0.3;
+    bg_audio.loop = true;
+    bg_audio.load();
+    bg_audio.play();
+  }
+
+  if (curr_time != time) {
+    curr_time = time;
+    var fadeOut = setInterval(function() {
+      if (bg_audio.volume > 0) {
+        bg_audio.volume = bg_audio.volume - 0.05 < 0 ? 0 : bg_audio.volume - 0.05;
+      } else {
+        clearInterval(fadeOut);
+      }
+    }, 2000);
+    bg_audio.src = "/audio/" + time + ".mp3";
+    bg_audio.volume = 0.3;
+    bg_audio.loop = true;
+    bg_audio.load();
+    bg_audio.play();
+    var fadeIn = setInterval(function() {
+      if (bg_audio.volume < 0.3) {
+        bg_audio.volume = bg_audio.volume + 0.05 > 0.3 ? 0.3 : bg_audio.volume + 0.05;
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 2000);
+  }
+}
 
 function gameStateReducer(gameState: GameState, action: Action) {
   switch (action.type) {
@@ -156,6 +196,7 @@ function gameStateReducer(gameState: GameState, action: Action) {
       let newCardIndex, newDeck;
       document.documentElement.id = currentTime; // time flag for css
       document.body.id = "to-" + currentTime;
+      updateBGAudio(currentTime);
       if (currentTime === TIME.MORNING) {
         newCardIndex = Math.floor(Math.random() * morningDeck.length);
         newDeck = [...morningDeck];
@@ -228,4 +269,4 @@ function useGameState() {
   return context;
 }
 
-export { GameStateProvider, useGameState };
+export { GameStateProvider, useGameState, };
