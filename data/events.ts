@@ -6,20 +6,27 @@ export enum TIME {
 }
 
 export enum SLEEP_STATUS {
-  BURNT_OUT = "BURNT_OUT",
+  BURNT_OUT = "BURNT OUT",
   TIRED = "TIRED",
-  RESTED = "RESTED",
+  AWAKE = "AWAKE",
+  RESTED = " WELL RESTED",
   ENERGETIC = "ENERGETIC",
 }
 
 export enum SOCIAL_STATUS {
   POPULAR = "POPULAR",
+  OUT_GOING = "OUTGOING", 
+  SOCIALABLE = "SOCIALABLE",
   LONELY = "LONELY",
+  ANTI_SOCIAL = "ANTISOCIAL",
 }
 
 export enum STUDY_STATUS {
   STRESSED = "STRESSED",
+  UNPREPARED = "UNPREPARED",
+  INDIFFERENT = "INDIFFERENT",
   PREPARED = "PREPARED",
+  SCHOLAR = "SCHOLARLY",
 }
 
 export enum PILLAR {
@@ -70,19 +77,19 @@ export const EVENTS: EVENT[] = [
       "On the way to class you see your friend, and they ask if you want to grab Chick-fil-A. Do you go?",
     time: TIME.MORNING,
     effects: [
-      { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.STUDY, value: -5 },
     ],
     audio: "/audio/fastfood.mp3"
   },
   {
     label: "Worked out with your friend",
     title:
-      "You wake up a bit earlier than usual. Your friend texts you asking to go work out together. Do you go?",
+      "While in bed you receive a text from your friend asking to go work out together. Do you go?",
     time: TIME.MORNING,
     effects: [
-      { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
     ],
     audio: "/audio/workout.mp3"
   },
@@ -98,6 +105,17 @@ export const EVENTS: EVENT[] = [
     audio: "/audio/studying.mp3"
   },
   {
+    label: "Got a head start before class",
+    title:
+      "You have class in another hour. Do you get a head start and look at the slides?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+    ],
+    audio: "/audio/study-alone.mp3"
+  },
+  {
     label: "Slept in",
     title:
       "Your alarm clock goes off, but you still feel tired. Do you sleep in and skip your 8 AM?",
@@ -109,14 +127,25 @@ export const EVENTS: EVENT[] = [
     audio: "/audio/sleep-in.mp3"
   },
   {
-    label: "Grabbed Blue Donkey with a friend and study",
+    label: "Took a nap after class",
     title:
-      "You wake up to a text from your friend asking to study at the library together. Do you go?",
+      "After your morning classes, do you head back to your apartment to sleep in?",
     time: TIME.MORNING,
     effects: [
-      { pillar: PILLAR.SLEEP, value: -5 },
+      { pillar: PILLAR.SLEEP, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+    audio: "/audio/sleep-in.mp3"
+  },
+  {
+    label: "Went and studied at the library with your friend",
+    title:
+      "While in bed you receive a text from your friend asking to go study at the library together. Do you go?",
+    time: TIME.MORNING,
+    effects: [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
     ],
     audio: "/audio/studying.mp3"
   },
@@ -126,10 +155,23 @@ export const EVENTS: EVENT[] = [
       "Your friend invited you to go to a yoga class this morning. Do you want to go?",
     time: TIME.MORNING,
     effects: [
-      { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: 5 },
+      { pillar: PILLAR.STUDY, value: -5 },
     ],
     audio: "/audio/yoga.mp3"
+  },
+  {
+    label: "Went to Blue Donkey and studied at the student lounge",
+    title:
+      "You feel like you need a boost of energy and want to study. Do you go to Blue Donkey and get a coffee?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SLEEP, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+    audio: "/audio/yoga.mp3" // austin -> produce COFEE SOUNDS
   },
   {
     label: "Went for a morning hike",
@@ -143,24 +185,137 @@ export const EVENTS: EVENT[] = [
     audio: "/audio/hiking.mp3"
   },
   {
+    label: "Crammed some studying before the exam",
+    title:
+      "You have an exam in an hour. Do you cram for the exam?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.SLEEP, value: -10 },
+      { pillar: PILLAR.STUDY, value: 10 },
+    ],
+    audio: "/audio/study-alone.mp3"
+  },
+  {
+    label: "Skipped a breakfast meet up to catch some Z's",
+    title:
+      "You promised to meet up with your friends for breakfast, but feel like sleeping in. Do you skip the breakfast and sleep in?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.SOCIAL, value: -10 },
+      { pillar: PILLAR.SLEEP, value: 10 },
+    ],
+    audio: "/audio/sleep-in.mp3"
+  },
+  {
+    label: "Skipped out on friends to do homework",
+    title:
+      "You want to head back to your apartment after your morning class to finish your homework, but your friends are inviting you to hang out. Do you go home and study?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.SOCIAL, value: -10 },
+      { pillar: PILLAR.STUDY, value: 10 },
+    ],
+    audio: "/audio/study-alone.mp3"
+  },
+  {
+    label: "Skipped a quiz to sleep in",
+    title:
+      "You have a quiz today, but you would rather catch up on sleep. Do you sleep in?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -10 },
+      { pillar: PILLAR.SLEEP, value: 10 },
+    ],
+    audio: "/audio/sleep-in.mp3"
+  },
+  {
+    label: "Skipped class to eat out",
+    title:
+      "Your friends are wanting to skip morning lecture to go eat out instead. Do you join them?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -10 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
+    ],
+    audio: "/audio/fastfood.mp3"
+  },
+
+  // ========== AFTERNOON ========== //
+  {
     label: "Went to career fair",
     title:
       "Career fair is today and you still are looking for a job. Do you attend career fair?",
     time: TIME.AFTERNOON,
     effects: [
-      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
     audio: "/audio/gathering.mp3"
   },
   {
-    label: "Met up with a study group",
+    label: "Caught up on a project",
     title:
-      "Your study group is holding a study session at the library. Do you go study and prep for your upcoming test?",
+      "You are falling behind on one of your projects. Do you stop procrastinating and catch up on it?",
     time: TIME.AFTERNOON,
     effects: [
-      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+    ],
+    audio: "/audio/study-alone.mp3"
+  },
+  {
+    label: "Played frisbee with friends",
+    title:
+      "Walking across Tech Green, you see some of your friends playing frisbee. Do you join them?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+    ],
+    audio: "/audio/paper.mp3" // austin -> frisbee audio
+  },
+  {
+    label: "Ate lunch with your club mates",
+    title:
+      "Your club is holding a lunch meetup at Tech Green. Do you join them?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.STUDY, value: -5 },
+    ],
+    audio: "/audio/fastfood.mp3"
+  },
+  {
+    label: "Slept through afternoon lectures",
+    title:
+      "After your morning classes you feel like heading back home to sleep instead of attending your afternoon classes. Do you head home?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.SLEEP, value: 5 },
+      { pillar: PILLAR.STUDY, value: -5 },
+    ],
+    audio: "/audio/sleep-in.mp3"
+  },
+  {
+    label: "Took a nap instead of playing raquetball",
+    title:
+      "You feel like taking a nap after classes, but your friend texts you to join them to play racquetball. Do you take your nap?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+    audio: "/audio/sleep-in.mp3"
+  },
+  {
+    label: "Met up with a study group",
+    title:
+      "The library is offering free coffee after 2pm. Do you go study and prep for your upcoming test?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+      { pillar: PILLAR.SLEEP, value: 5 },
     ],
     audio: "/audio/studying.mp3"
   },
@@ -170,10 +325,23 @@ export const EVENTS: EVENT[] = [
       "Your club is hosting a career prep session and resume review. Do you participate?",
     time: TIME.AFTERNOON,
     effects: [
-      { pillar: PILLAR.STUDY, value: 10 },
-      { pillar: PILLAR.SOCIAL, value: -5 },
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
     ],
     audio: "/audio/workshop.mp3"
+  },
+  {
+    label: "Relaxed at Tech Green with your friends",
+    title:
+      "Your friends want to lie down and relax at Tech Green. Do you go?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: 5 },
+    ],
+    audio: "/audio/yoga.mp3"
   },
   {
     label: "Played basketball with friends",
@@ -181,15 +349,16 @@ export const EVENTS: EVENT[] = [
       "Some of your friends invite you to play basketball with them at the CRC. Do you play with them?",
     time: TIME.AFTERNOON,
     effects: [
-      { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 10 },
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
     ],
     audio: "/audio/basketball.mp3"
   },
   {
     label: "Took a nap",
     title:
-      "You woke up feeling exhausted today. Do you take a nap to recharge?",
+      "You still feel tired. Do you take a nap to recharge?",
     time: TIME.AFTERNOON,
     effects: [
       { pillar: PILLAR.SOCIAL, value: -5 },
@@ -210,6 +379,30 @@ export const EVENTS: EVENT[] = [
     audio: "/audio/planting.mp3"
   },
   {
+    label: "Slept in, procrastinating further on an assignment",
+    title:
+      "You really want to sleep, but have an assignment due tonight at 11:59pm. Do you sleep anyways?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.SLEEP, value: 10 },
+      { pillar: PILLAR.STUDY, value: -10 },
+    ],
+    audio: "/audio/sleep-in.mp3"
+  },
+  {
+    label: "Attended online mass study session with your TAs",
+    title:
+      "Your TAs are holding an online mass study session for the upcoming test. Do you attend?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.SOCIAL, value: -10 },
+    ],
+    audio: "/audio/studying.mp3"
+  },
+
+  // ========== NIGHT ========== //
+  {
     label: "Went to a frat party",
     title:
       "You heard about a frat party that is going on tonight. Do you want to go?",
@@ -229,29 +422,18 @@ export const EVENTS: EVENT[] = [
     effects: [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SLEEP, value: -5 },
-      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
     ],
     audio: "/audio/movie.mp3"
-  },
-  {
-    label: "Went to a club meeting",
-    title:
-      "Your club has a meeting tonight, but you have a lot of studying to do. Do you go?",
-    time: TIME.NIGHT,
-    effects: [
-      { pillar: PILLAR.STUDY, value: -5 },
-      { pillar: PILLAR.SOCIAL, value: 5 },
-    ],
-    audio: "/audio/gathering.mp3"
   },
   {
     label: "Partied at the Standard",
     title: "You get invited to a rooftop party at the Standard. Do you go?",
     time: TIME.NIGHT,
     effects: [
-      { pillar: PILLAR.SLEEP, value: -10 },
+      { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.STUDY, value: -5 },
-      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
     ],
     audio: "/audio/pool-party.mp3"
   },
@@ -261,8 +443,8 @@ export const EVENTS: EVENT[] = [
     time: TIME.NIGHT,
     effects: [
       { pillar: PILLAR.STUDY, value: 10 },
-      { pillar: PILLAR.SOCIAL, value: -10 },
-      { pillar: PILLAR.SLEEP, value: -10 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
     ],
     audio: "/audio/study-alone.mp3"
   },
@@ -274,7 +456,7 @@ export const EVENTS: EVENT[] = [
     effects: [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
-      { pillar: PILLAR.SLEEP, value: -10 },
+      { pillar: PILLAR.SLEEP, value: 10 },
     ],
     audio: "/audio/sleep-in-movie.mp3"
   },
