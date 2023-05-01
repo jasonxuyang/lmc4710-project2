@@ -54,7 +54,9 @@ export default function Book() {
   const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
   const renderHints = () => {
-    if (studyStatus === STUDY_STATUS.STRESSED) {
+    if (studyStatus === STUDY_STATUS.STRESSED 
+      || studyStatus === STUDY_STATUS.UNPREPARED 
+      || studyStatus === STUDY_STATUS.INDIFFERENT) {
       return "Hints disabled. Try studying more.";
     } else {
       if (!flags.length)
@@ -68,7 +70,7 @@ export default function Book() {
   };
   const isNotificationVisible =
     flags.some((flag) => flag?.timeAcknowledged === undefined) &&
-    studyStatus === STUDY_STATUS.PREPARED;
+    (studyStatus === STUDY_STATUS.PREPARED || studyStatus === STUDY_STATUS.SCHOLAR);
 
   return (
     <BookContainer>

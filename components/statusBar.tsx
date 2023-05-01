@@ -16,7 +16,7 @@ export default function StatusBar() {
   const { gameState } = useGameState();
   const { sleep, study, social } = gameState;
   const { sleepStatus, socialStatus, studyStatus } = useFeelingStatus();
-  const isPrepared = studyStatus === STUDY_STATUS.PREPARED;
+  const isPrepared = (studyStatus === STUDY_STATUS.PREPARED) || (studyStatus === STUDY_STATUS.SCHOLAR);
 
   return (
     <StatusBarContainer id="status-bar">
