@@ -15,7 +15,7 @@ export enum SLEEP_STATUS {
 
 export enum SOCIAL_STATUS {
   POPULAR = "POPULAR",
-  OUT_GOING = "OUTGOING", 
+  OUT_GOING = "OUTGOING",
   SOCIALABLE = "SOCIALABLE",
   LONELY = "LONELY",
   ANTI_SOCIAL = "ANTISOCIAL",
@@ -41,6 +41,12 @@ export enum FLAGS {
   BURNT_OUT = "When you are burnt out, you tend to sleep in. (you lose a morning activity)",
 }
 
+export enum THREAD {
+  ROMANCE = "ROMANCE",
+  CLUB = "CLUB",
+  RESEARCH = "RESEARCH",
+}
+
 export type EFFECT = {
   pillar: PILLAR;
   value: number;
@@ -52,6 +58,7 @@ export type EVENT = {
   time: TIME;
   effects: EFFECT[];
   audio: string;
+  thread?: THREAD;
 };
 
 export type FLAG = {
@@ -80,7 +87,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.STUDY, value: -5 },
     ],
-    audio: "/audio/fastfood.mp3"
+    audio: "/audio/fastfood.mp3",
   },
   {
     label: "Worked out with your friend",
@@ -91,7 +98,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/workout.mp3"
+    audio: "/audio/workout.mp3",
   },
   {
     label: "Studied in the library",
@@ -102,7 +109,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
-    audio: "/audio/studying.mp3"
+    audio: "/audio/studying.mp3",
   },
   {
     label: "Got a head start before class",
@@ -113,7 +120,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/study-alone.mp3"
+    audio: "/audio/study-alone.mp3",
   },
   {
     label: "Slept in",
@@ -124,7 +131,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.STUDY, value: -5 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Took a nap after class",
@@ -135,7 +142,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Went and studied at the library with your friend",
@@ -147,7 +154,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/studying.mp3"
+    audio: "/audio/studying.mp3",
   },
   {
     label: "Went to a yoga class",
@@ -159,7 +166,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.STUDY, value: -5 },
     ],
-    audio: "/audio/yoga.mp3"
+    audio: "/audio/yoga.mp3",
   },
   {
     label: "Went to Blue Donkey and studied at the student lounge",
@@ -171,7 +178,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
-    audio: "/audio/yoga.mp3" // austin -> produce COFEE SOUNDS
+    audio: "/audio/yoga.mp3", // austin -> produce COFEE SOUNDS
   },
   {
     label: "Went for a morning hike",
@@ -182,18 +189,17 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: -10 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
-    audio: "/audio/hiking.mp3"
+    audio: "/audio/hiking.mp3",
   },
   {
     label: "Crammed some studying before the exam",
-    title:
-      "You have an exam in an hour. Do you cram for the exam?",
+    title: "You have an exam in an hour. Do you cram for the exam?",
     time: TIME.MORNING,
     effects: [
       { pillar: PILLAR.SLEEP, value: -10 },
       { pillar: PILLAR.STUDY, value: 10 },
     ],
-    audio: "/audio/study-alone.mp3"
+    audio: "/audio/study-alone.mp3",
   },
   {
     label: "Skipped a breakfast meet up to catch some Z's",
@@ -204,7 +210,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -10 },
       { pillar: PILLAR.SLEEP, value: 10 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Skipped out on friends to do homework",
@@ -215,7 +221,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -10 },
       { pillar: PILLAR.STUDY, value: 10 },
     ],
-    audio: "/audio/study-alone.mp3"
+    audio: "/audio/study-alone.mp3",
   },
   {
     label: "Skipped a quiz to sleep in",
@@ -226,7 +232,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -10 },
       { pillar: PILLAR.SLEEP, value: 10 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Skipped class to eat out",
@@ -237,7 +243,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -10 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
-    audio: "/audio/fastfood.mp3"
+    audio: "/audio/fastfood.mp3",
   },
 
   // ========== AFTERNOON ========== //
@@ -250,7 +256,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
-    audio: "/audio/gathering.mp3"
+    audio: "/audio/gathering.mp3",
   },
   {
     label: "Caught up on a project",
@@ -261,7 +267,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/study-alone.mp3"
+    audio: "/audio/study-alone.mp3",
   },
   {
     label: "Played frisbee with friends",
@@ -272,7 +278,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/paper.mp3" // austin -> frisbee audio
+    audio: "/audio/paper.mp3", // austin -> frisbee audio
   },
   {
     label: "Ate lunch with your club mates",
@@ -283,7 +289,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.STUDY, value: -5 },
     ],
-    audio: "/audio/fastfood.mp3"
+    audio: "/audio/fastfood.mp3",
   },
   {
     label: "Slept through afternoon lectures",
@@ -294,7 +300,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.STUDY, value: -5 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Took a nap instead of playing raquetball",
@@ -305,7 +311,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 5 },
       { pillar: PILLAR.SOCIAL, value: -5 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Met up with a study group",
@@ -317,7 +323,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.SLEEP, value: 5 },
     ],
-    audio: "/audio/studying.mp3"
+    audio: "/audio/studying.mp3",
   },
   {
     label: "Went to a career prep session",
@@ -329,19 +335,18 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/workshop.mp3"
+    audio: "/audio/workshop.mp3",
   },
   {
     label: "Relaxed at Tech Green with your friends",
-    title:
-      "Your friends want to lie down and relax at Tech Green. Do you go?",
+    title: "Your friends want to lie down and relax at Tech Green. Do you go?",
     time: TIME.AFTERNOON,
     effects: [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 5 },
       { pillar: PILLAR.SLEEP, value: 5 },
     ],
-    audio: "/audio/yoga.mp3"
+    audio: "/audio/yoga.mp3",
   },
   {
     label: "Played basketball with friends",
@@ -353,19 +358,18 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/basketball.mp3"
+    audio: "/audio/basketball.mp3",
   },
   {
     label: "Took a nap",
-    title:
-      "You still feel tired. Do you take a nap to recharge?",
+    title: "You still feel tired. Do you take a nap to recharge?",
     time: TIME.AFTERNOON,
     effects: [
       { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SLEEP, value: 5 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Planted trees",
@@ -376,7 +380,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: 10 },
       { pillar: PILLAR.SLEEP, value: -10 },
     ],
-    audio: "/audio/planting.mp3"
+    audio: "/audio/planting.mp3",
   },
   {
     label: "Slept in, procrastinating further on an assignment",
@@ -387,7 +391,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: 10 },
       { pillar: PILLAR.STUDY, value: -10 },
     ],
-    audio: "/audio/sleep-in.mp3"
+    audio: "/audio/sleep-in.mp3",
   },
   {
     label: "Attended online mass study session with your TAs",
@@ -398,7 +402,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: 10 },
       { pillar: PILLAR.SOCIAL, value: -10 },
     ],
-    audio: "/audio/studying.mp3"
+    audio: "/audio/studying.mp3",
   },
 
   // ========== NIGHT ========== //
@@ -412,7 +416,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
-    audio: "/audio/party.mp3"
+    audio: "/audio/party.mp3",
   },
   {
     label: "Watched a movie",
@@ -424,7 +428,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SLEEP, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
-    audio: "/audio/movie.mp3"
+    audio: "/audio/movie.mp3",
   },
   {
     label: "Partied at the Standard",
@@ -435,7 +439,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.STUDY, value: -5 },
       { pillar: PILLAR.SOCIAL, value: 10 },
     ],
-    audio: "/audio/pool-party.mp3"
+    audio: "/audio/pool-party.mp3",
   },
   {
     label: "Stayed up studying for an exam",
@@ -446,7 +450,7 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.SLEEP, value: -5 },
     ],
-    audio: "/audio/study-alone.mp3"
+    audio: "/audio/study-alone.mp3",
   },
   {
     label: "Slept early",
@@ -458,7 +462,154 @@ export const EVENTS: EVENT[] = [
       { pillar: PILLAR.SOCIAL, value: -5 },
       { pillar: PILLAR.SLEEP, value: 10 },
     ],
-    audio: "/audio/sleep-in-movie.mp3"
+    audio: "/audio/sleep-in-movie.mp3",
+  },
+  {
+    label: "Slept early",
+    title:
+      "You're feeling a bit tired. Do you stay in and have a movie night by yourself and sleep early?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+      { pillar: PILLAR.SLEEP, value: 10 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+  },
+  {
+    label: "Spend a night in with your partner",
+    title: "Spend a night in with your partner?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.STUDY, value: -5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.ROMANCE,
+  },
+  {
+    label: "Attend a wedding with your partner",
+    title: "Attend a wedding with your partner?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.ROMANCE,
+  },
+  {
+    label: "Plan a surprise date for your partner",
+    title: "Plan a surprise date for your partner?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.ROMANCE,
+  },
+  {
+    label: "Celebrate your anniversary with your partner",
+    title: "Celebrate your anniversary with your partner?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.ROMANCE,
+  },
+  {
+    label: "Have a picnic in the park with your partner",
+    title: "Have a picnic in the park with your partner?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.ROMANCE,
+  },
+  {
+    label: "Go on a double date with friends",
+    title: "Go on a double date with friends?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.ROMANCE,
+  },
+  {
+    label: "Attend a party with club members",
+    title: "Attend a party with club members?",
+    time: TIME.NIGHT,
+    effects: [
+      { pillar: PILLAR.STUDY, value: -5 },
+      { pillar: PILLAR.SOCIAL, value: 10 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.CLUB,
+  },
+  {
+    label: "Work on a group project with club members",
+    title: "Work on a group project with club members?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.CLUB,
+  },
+  {
+    label: "Attend a conference with club members",
+    title: "Attend a conference with club members?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.CLUB,
+  },
+  {
+    label: "Collaborate with club members on a startup idea",
+    title: "Attend a conference with club members?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.CLUB,
+  },
+  {
+    label: "Help a fellow club member with a personal project",
+    title: "Attend a conference with club members?",
+    time: TIME.AFTERNOON,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 5 },
+      { pillar: PILLAR.SOCIAL, value: 5 },
+      { pillar: PILLAR.SLEEP, value: -5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.CLUB,
+  },
+  {
+    label: "Attend a workshop or seminar with club members",
+    title: "Attend a workshop or seminar with club members?",
+    time: TIME.MORNING,
+    effects: [
+      { pillar: PILLAR.STUDY, value: 10 },
+      { pillar: PILLAR.SOCIAL, value: -5 },
+    ],
+    audio: "/audio/sleep-in-movie.mp3",
+    thread: THREAD.CLUB,
   },
 ];
 
