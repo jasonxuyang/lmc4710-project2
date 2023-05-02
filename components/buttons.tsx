@@ -1,4 +1,4 @@
-import { TIME } from "@/data/events";
+import { THREAD, TIME } from "@/data/events";
 import styled, { css } from "styled-components";
 import Book from "./book";
 import {
@@ -9,6 +9,10 @@ import {
   setRerolls,
 } from "./gameStateActions";
 import { useGameState } from "./gameStateContext";
+import { useRecoilState } from "recoil";
+import romanceThreadState from "@/recoil/romanceThreadState";
+import clubThreadState from "@/recoil/clubThreadState";
+import researchThreadState from "@/recoil/researchThreadState";
 
 const ButtonsContainer = styled.div`
   width: 100%;
@@ -50,6 +54,10 @@ Button.defaultProps = { disabled: false };
 
 export default function Buttons() {
   const { gameState, dispatch } = useGameState();
+  const [romanceThread, setRomanceThread] = useRecoilState(romanceThreadState);
+  const [clubThread, setClubThread] = useRecoilState(clubThreadState);
+  const [researchThread, setResearchThread] =
+    useRecoilState(researchThreadState);
   const {
     currentCard,
     rerolls,
@@ -69,6 +77,16 @@ export default function Buttons() {
     currentCard?.effects.forEach((effect) => {
       dispatch(setPillar(effect));
     });
+    if (currentCard?.thread) {
+      const thread = currentCard.thread;
+      if (thread === THREAD.ROMANCE) {
+        setRomanceThread(romanceThread + 1);
+      } else if (thread === THREAD.CLUB) {
+        setClubThread(clubThread + 1);
+      } else if (thread === THREAD.RESEARCH) {
+        setResearchThread(researchThread + 1);
+      }
+    }
     dispatch(chooseCard(currentCard!));
     dispatch(progressTime());
     dispatch(drawCard());
@@ -95,10 +113,20 @@ export default function Buttons() {
 
   return (
     <ButtonsContainer>
-      <Button disabled={!canReroll()} onClick={rejectCard} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+      <Button
+        disabled={!canReroll()}
+        onClick={rejectCard}
+        onMouseEnter={mouseEnter}
+        onMouseLeave={mouseLeave}
+      >
         No ({rerolls})
       </Button>
-      <Button onClick={acceptCard} disabled={!currentCard} onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+      <Button
+        onClick={acceptCard}
+        disabled={!currentCard}
+        onMouseEnter={mouseEnter}
+        onMouseLeave={mouseLeave}
+      >
         Yes
       </Button>
       <Book />

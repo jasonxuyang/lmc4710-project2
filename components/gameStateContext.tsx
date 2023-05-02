@@ -11,7 +11,7 @@ import {
   TIME,
 } from "@/data/events";
 import * as React from "react";
-import { createContext, useContext, useReducer, } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 export enum ActionTypes {
   SET_PILLAR = "SET_PILLAR",
@@ -73,7 +73,6 @@ var bg_audio: HTMLAudioElement;
 var curr_time = "";
 
 const updateBGAudio = (time: string) => {
-
   if (curr_time == "") {
     curr_time = time;
     bg_audio = new Audio();
@@ -86,9 +85,10 @@ const updateBGAudio = (time: string) => {
 
   if (curr_time != time) {
     curr_time = time;
-    var fadeOut = setInterval(function() {
+    var fadeOut = setInterval(function () {
       if (bg_audio.volume > 0) {
-        bg_audio.volume = bg_audio.volume - 0.05 < 0 ? 0 : bg_audio.volume - 0.05;
+        bg_audio.volume =
+          bg_audio.volume - 0.05 < 0 ? 0 : bg_audio.volume - 0.05;
       } else {
         clearInterval(fadeOut);
       }
@@ -98,15 +98,16 @@ const updateBGAudio = (time: string) => {
     bg_audio.loop = true;
     bg_audio.load();
     bg_audio.play();
-    var fadeIn = setInterval(function() {
+    var fadeIn = setInterval(function () {
       if (bg_audio.volume < 0.3) {
-        bg_audio.volume = bg_audio.volume + 0.05 > 0.3 ? 0.3 : bg_audio.volume + 0.05;
+        bg_audio.volume =
+          bg_audio.volume + 0.05 > 0.3 ? 0.3 : bg_audio.volume + 0.05;
       } else {
         clearInterval(fadeIn);
       }
     }, 2000);
   }
-}
+};
 
 function gameStateReducer(gameState: GameState, action: Action) {
   switch (action.type) {
@@ -269,4 +270,4 @@ function useGameState() {
   return context;
 }
 
-export { GameStateProvider, useGameState, };
+export { GameStateProvider, useGameState };
