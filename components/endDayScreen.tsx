@@ -4,7 +4,7 @@ import { Button } from "./buttons";
 import { resetState, setStatus, startNewDay } from "./gameStateActions";
 import { useGameState } from "./gameStateContext";
 import useFeelingStatus from "./useFeelingStatus";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useResetRecoilState } from "recoil";
 import romanceThreadState from "@/recoil/romanceThreadState";
 import clubThreadState from "@/recoil/clubThreadState";
 import researchThreadState from "@/recoil/researchThreadState";
@@ -33,8 +33,11 @@ const SummaryContainer = styled.div`
 export default function EndDayScreen() {
   const { gameState, dispatch } = useGameState();
   const romanceThread = useRecoilValue(romanceThreadState);
+  const resetRomanceThread = useResetRecoilState(romanceThreadState);
   const clubThread = useRecoilValue(clubThreadState);
+  const resetClubThread = useResetRecoilState(clubThreadState);
   const researchThread = useRecoilValue(researchThreadState);
+  const resetResearchThread = useResetRecoilState(researchThreadState);
   const { chosenCards, sleep, social, study, daysLeft } = gameState;
   const feelingStatus = useFeelingStatus();
   const { sleepStatus, socialStatus, studyStatus } = feelingStatus;
@@ -54,6 +57,9 @@ export default function EndDayScreen() {
         <Button
           onClick={() => {
             dispatch(resetState());
+            resetClubThread();
+            resetResearchThread();
+            resetRomanceThread();
             dispatch(setStatus(STATUS.PLAY));
             new Audio("/audio/slide-paper.mp3").play();
             new Audio("/audio/alarm.mp3").play();
@@ -86,6 +92,9 @@ export default function EndDayScreen() {
           onClick={() => {
             dispatch(resetState());
             dispatch(setStatus(STATUS.PLAY));
+            resetClubThread();
+            resetResearchThread();
+            resetRomanceThread();
             new Audio("/audio/slide-paper.mp3").play();
             new Audio("/audio/alarm.mp3").play();
           }}
@@ -120,6 +129,9 @@ export default function EndDayScreen() {
           onClick={() => {
             dispatch(resetState());
             dispatch(setStatus(STATUS.PLAY));
+            resetClubThread();
+            resetResearchThread();
+            resetRomanceThread();
             new Audio("/audio/slide-paper.mp3").play();
             new Audio("/audio/alarm.mp3").play();
           }}
@@ -153,6 +165,9 @@ export default function EndDayScreen() {
           onClick={() => {
             dispatch(resetState());
             dispatch(setStatus(STATUS.PLAY));
+            resetClubThread();
+            resetResearchThread();
+            resetRomanceThread();
             new Audio("/audio/slide-paper.mp3").play();
             new Audio("/audio/alarm.mp3").play();
           }}
